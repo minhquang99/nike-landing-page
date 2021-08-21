@@ -1,9 +1,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;1,600&display=swap");
 
 /* ------------------------ VARIABLES ------------------------------ */
+$ip-small-width: 321px;
+$ip678X-width: 376px;
+$ip678-plus-width: 600px;
 
-$mobile-width: 600px;
-$tablet-width: 1024px;
+$ipad-width: 769px;
+$ipad-pro-width: 1024px;
 
 $text-color: #1a2b5f;
 $primary-color: #ffc87a;
@@ -26,14 +29,32 @@ $blue-two: #0575e6;
 
 $silver: #bdc3c7;
 
+@mixin ipsmall {
+    @media only screen and (max-width: $ip-small-width) {
+        @content;
+    }
+}
+
+@mixin ip678X {
+    @media only screen and (max-width: $ip678X-width) {
+        @content;
+    }
+}
+
+@mixin ipad {
+    @media only screen and (max-width: $ipad-width) {
+        @content;
+    }
+}
+
 @mixin mobile {
-    @media only screen and (max-width: $mobile-width) {
+    @media only screen and (max-width: $ip678-plus-width) {
         @content;
     }
 }
 
 @mixin tablet {
-    @media only screen and (max-width: $tablet-width) {
+    @media only screen and (max-width: $ipad-pro-width) {
         @content;
     }
 }
@@ -87,6 +108,18 @@ ul {
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
+
+    @include tablet {
+        display: flex;
+        flex-wrap: nowrap;
+        flex-direction: column;
+    }
+
+    @include mobile {
+        display: flex;
+        flex-wrap: nowrap;
+        flex-direction: column;
+    }
 }
 
 .row::after,
@@ -97,6 +130,18 @@ ul {
 .col-6 {
     width: 50%;
     position: relative;
+
+    @include tablet {
+        width: 100%;
+        height: 50%;
+        position: relative;
+    }
+
+    @include mobile {
+        width: 100%;
+        height: 50%;
+        position: relative;
+    }
 }
 
 .slider {
@@ -114,6 +159,23 @@ ul {
     left: 70%;
     width: 100%;
     transform: translate(-50%, -50%);
+
+    @include tablet {
+        position: absolute;
+        top: 50%;
+        left: 75%;
+    }
+
+    @include mobile {
+        position: absolute;
+        top: 65%;
+        left: 75%;
+    }
+
+    @include ip678X {
+        position: absolute;
+        top: 65%;
+    }
 }
 
 .img-wrapper {
@@ -122,12 +184,42 @@ ul {
         width: 80%;
         transform: rotate(+30deg);
     }
+
+    @include tablet {
+        height: auto;
+        width: 80%;
+    }
+
+    @include mobile {
+        height: auto;
+        width: 80%;
+    }
 }
 
 .more-image {
     position: absolute;
     top: 60%;
     left: 60px;
+
+    @include tablet {
+        position: absolute;
+        top: 5%;
+        left: 35px;
+    }
+
+    @include mobile {
+        position: absolute;
+        top: 5%;
+        left: 65px;
+        display: flex;
+    }
+
+    @include ipsmall {
+        position: absolute;
+        top: 5%;
+        left: 65px;
+        display: flex;
+    }
 }
 
 .more-image-item {
@@ -142,6 +234,21 @@ ul {
         width: 80px;
         border-radius: 15px;
         transition: 1s;
+
+        @include tablet {
+            height: auto;
+            width: 95px;
+        }
+
+        @include mobile {
+            height: auto;
+            width: 55px;
+        }
+
+        @include ipsmall {
+            height: auto;
+            width: 40px;
+        }
     }
 
     &:hover {
@@ -150,6 +257,10 @@ ul {
         img {
             transform: scale(1.5);
         }
+    }
+
+    @include mobile {
+        margin: 0 10px;
     }
 }
 
@@ -161,17 +272,49 @@ ul {
     left: 50%;
     transform: translate(-50%, -50%);
     width: 100%;
+
+    @include tablet {
+        top: 37%;
+    }
+
+    @include mobile {
+        top: 35%;
+    }
+
+    @include ip678X {
+        top: 35%;
+    }
+
+    @include ipsmall {
+        top: 45%;
+    }
 }
 
 .info-wrapper {
     position: relative;
     text-align: left;
     color: $black;
+
+    @include tablet {
+        margin-left: 10px;
+    }
+
+    @include mobile {
+        margin-left: 10px;
+    }
 }
 
 .product-price {
     font-weight: 600;
     font-size: 1.8rem;
+
+    @include tablet {
+        font-size: 1.8rem;
+    }
+
+    @include mobile {
+        font-size: 1.3rem;
+    }
 
     span {
         font-size: 1.2rem;
@@ -183,12 +326,36 @@ ul {
 .product-name {
     font-weight: 600;
     font-size: 2rem;
+
+    @include tablet {
+        font-size: 1.9rem;
+    }
+
+    @include mobile {
+        font-size: 1.5rem;
+    }
+
+    @include ipsmall {
+        font-size: 1rem;
+    }
 }
 
 .product-size {
     h2 {
         font-size: 1rem;
         color: $black-two;
+
+        @include tablet {
+            font-size: 1rem;
+        }
+
+        @include mobile {
+            font-size: 0.7rem;
+        }
+
+        @include ipsmall {
+            font-size: 0.5rem;
+        }
     }
 }
 
@@ -206,6 +373,30 @@ ul {
         border: 2px solid $silver;
         padding: 10px;
         border-radius: 50%;
+
+        @include tablet {
+            font-size: 0.9rem;
+            margin: 5px;
+            width: 45px;
+            height: 45px;
+            padding: 11px;
+        }
+
+        @include mobile {
+            font-size: 0.7rem;
+            margin: 3px;
+            width: 35px;
+            height: 35px;
+            padding: 9px;
+        }
+
+        @include ipsmall {
+            font-size: 0.5rem;
+            margin: 3px;
+            width: 30px;
+            height: 30px;
+            padding: 8px;
+        }
     }
 
     div.active {
@@ -222,6 +413,18 @@ ul {
     h2 {
         font-size: 1rem;
         color: $black-two;
+
+        @include tablet {
+            font-size: 1rem;
+        }
+
+        @include mobile {
+            font-size: 0.7rem;
+        }
+
+        @include ipsmall {
+            font-size: 0.5rem;
+        }
     }
 }
 
@@ -238,6 +441,30 @@ ul {
         border: 2px solid $silver;
         padding: 10px;
         border-radius: 50%;
+
+        @include tablet {
+            font-size: 0.9rem;
+            margin: 5px;
+            width: 45px;
+            height: 45px;
+            padding: 11px;
+        }
+
+        @include mobile {
+            font-size: 0.7rem;
+            margin: 3px;
+            width: 35px;
+            height: 35px;
+            padding: 9px;
+        }
+
+        @include ipsmall {
+            font-size: 0.5rem;
+            margin: 3px;
+            width: 30px;
+            height: 30px;
+            padding: 8px;
+        }
     }
 
     div.active {
@@ -252,6 +479,14 @@ ul {
 
 .product-description {
     margin: 20px 0;
+
+    @include tablet {
+        font-size: 1.2rem;
+    }
+
+    @include mobile {
+        display: none;
+    }
 }
 
 .button {
@@ -263,6 +498,32 @@ ul {
         background-color: $white;
         color: $black;
         transition: 0.5s;
+
+        @include tablet {
+            padding: 12px 24px;
+            border-radius: 30px;
+            font-size: 1.2rem;
+        }
+
+        @include mobile {
+            padding: 10px 20px;
+            border-radius: 35px;
+            margin-top: 30px;
+        }
+
+        @include ip678X {
+            padding: 6px 12px;
+            border-radius: 30px;
+            margin-top: 20px;
+            font-size: 0.8rem;
+        }
+
+        @include ipsmall {
+            padding: 6px 12px;
+            border-radius: 30px;
+            margin-top: 20px;
+            font-size: 0.6rem;
+        }
     }
 
     button:hover {
@@ -274,6 +535,21 @@ ul {
 
 .img-col {
     border-bottom-right-radius: 100%;
+
+    @include tablet {
+        height: 70%;
+        border-bottom-right-radius: 100%;
+    }
+
+    @include mobile {
+        height: 70%;
+        border-bottom-right-radius: 100%;
+    }
+
+    @include ipsmall {
+        height: 60%;
+        border-bottom-right-radius: 100%;
+    }
 }
 
 /*------------------- SLIDE CONTROLL ---------------- */
@@ -330,6 +606,16 @@ ul {
 .bottom-up {
     transition: 1s;
     transform: translateY(100vh);
+
+    @include tablet {
+        transition: 1s;
+        transform: translateY(-400vh);
+    }
+
+    @include mobile {
+        transition: 1s;
+        transform: translateY(-400vh);
+    }
 }
 
 .active {
@@ -344,14 +630,38 @@ ul {
 
 .more-image-item:nth-child(1) {
     transition-delay: 0.2s;
+
+    @include tablet {
+        transition-delay: 0.6s;
+    }
+
+    @include mobile {
+        transition-delay: 0.2s;
+    }
 }
 
 .more-image-item:nth-child(2) {
     transition-delay: 0.4s;
+
+    @include tablet {
+        transition-delay: 0.4s;
+    }
+
+    @include mobile {
+        transition-delay: 0.4s;
+    }
 }
 
 .more-image-item:nth-child(3) {
     transition-delay: 0.6s;
+
+    @include tablet {
+        transition-delay: 0.2s;
+    }
+
+    @include mobile {
+        transition-delay: 0.6s;
+    }
 }
 
 .right-to-left {
@@ -412,6 +722,11 @@ ul {
 
     animation-name: zoom;
     animation-duration: 0.6s;
+
+    @include mobile {
+        padding-top: 150px;
+        max-width: 300px;
+    }
 }
 
 @keyframes zoom {
@@ -435,4 +750,23 @@ ul {
 .close:hover {
     color: $silver;
     cursor: pointer;
+}
+
+.bounce {
+    animation-name: bounce;
+    animation-duration: 3s;
+    animation-timing-function: ease;
+    animation-iteration-count: infinite;
+}
+
+@keyframes bounce {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-50px);
+    }
+    100% {
+        transform: translateY(0);
+    }
 }

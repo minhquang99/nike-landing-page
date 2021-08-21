@@ -1,6 +1,6 @@
 /* ---------- show slide ------------ */
 
-let slideIndex = 2
+let slideIndex = 0  
 
 let slider = document.getElementById('slider')
 
